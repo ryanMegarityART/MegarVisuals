@@ -1,7 +1,14 @@
 // import { analyze } from "web-audio-beat-detector";
 
 export class AudioVisualizer {
-  constructor(audioContext, processFrame, processError) {
+  audioContext: any;
+  processFrame: any;
+  processError: any;
+  analyser: any;
+  defaultFftSize: Number = 128;
+
+
+  constructor(audioContext: any, processFrame: any, processError: any) {
     this.audioContext = audioContext;
     this.processFrame = processFrame;
     this.connectStream = this.connectStream.bind(this);
@@ -15,11 +22,10 @@ export class AudioVisualizer {
       });
   }
 
-  async connectStream(stream) {
+  async connectStream(stream: any) {
     this.analyser = this.audioContext.createAnalyser();
     const source = this.audioContext.createMediaStreamSource(stream);
     source.connect(this.analyser);
-    this.defaultFftSize = 128
     this.analyser.defaultSmoothingTimeConstant = 0.5;
     this.analyser.smoothingTimeConstant = this.analyser.defaultSmoothingTimeConstant;
     this.analyser.fftSize = this.defaultFftSize;

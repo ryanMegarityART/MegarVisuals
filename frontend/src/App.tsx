@@ -1,33 +1,41 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Select from "react-select";
 import "./App.css";
-import logoBlue from "./assets/logoBlue.jpg";
-import { TopNav } from "./Components/Nav/TopNav";
-import {
-  Canvas,
-  canvasDefaultSizeProps,
-} from "./Components/Visualisers/Canvas";
+import { TopNav } from "./Components/TopNav";
+import { Visualiser } from "./Components/Visualiser";
+
+const options = [{ value: "noise", label: "Noise" }];
+
+function cancelAllAnimationFrames() {
+  var id = window.requestAnimationFrame(function () {});
+  while (id--) {
+    window.cancelAnimationFrame(id);
+  }
+}
 
 function App() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [context, setContext] = useState<any>(null);
-
-  useEffect(() => {
-    if (context) {
-      context.beginPath();
-      context.arc(50, 50, 50, 0, 2 * Math.PI);
-      context.fill();
-    }
-  }, context);
+  const [selectedVisualiser, setSelectedVisualiser] = useState<any>(null);
 
   return (
-    <div className="App">
+    <div>
       <TopNav />
-      <Canvas
-        canvasRef={canvasRef}
-        context={context}
-        setContext={setContext}
-        {...canvasDefaultSizeProps}
-      />
+      <div className="content">
+        <Select
+          placeholder="select visualiser.."
+          options={options}
+          onChange={(e) => {
+            cancelAllAnimationFrames();
+            if (e && e.value) {
+              setSelectedVisualiser(e.value);
+            }
+          }}
+        />
+        <div className="content">
+          {selectedVisualiser && (
+            <Visualiser visualiserName={selectedVisualiser} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
