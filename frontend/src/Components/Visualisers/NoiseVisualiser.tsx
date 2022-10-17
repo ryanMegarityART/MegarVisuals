@@ -8,10 +8,26 @@ export interface VisualiserProps {
   visualiserName: string;
 }
 
+export interface NoiseParams {
+  rows: number;
+  cols: number;
+  scaleMin: number;
+  scaleMax: number;
+  speed: number;
+  frequency: number;
+  amplitude: number;
+  // frame: 0,
+  // animate: true,
+  lineCap: string;
+  shape: string;
+  toggleFlash: boolean;
+  toggleImage: boolean;
+}
+
 export const NoiseVisualiser = () => {
-  const [params, setParams] = useState({
-    rows: 16,
-    cols: 16,
+  const [params, setParams] = useState<NoiseParams>({
+    rows: 25,
+    cols: 25,
     scaleMin: 0.00001,
     scaleMax: 0.1,
     speed: 2,
@@ -20,7 +36,7 @@ export const NoiseVisualiser = () => {
     // frame: 0,
     // animate: true,
     lineCap: "round",
-    shape: "smiley-face",
+    shape: "rectangle",
     toggleFlash: false,
     toggleImage: false,
   });
@@ -34,12 +50,12 @@ export const NoiseVisualiser = () => {
   const width = rect && rect.width ? rect.width : 300;
   const height = rect && rect.height ? rect.height : 300;
 
-  function cancelAllAnimationFrames(){
-    var id = window.requestAnimationFrame(function(){});
-    while(id--){
+  function cancelAllAnimationFrames() {
+    var id = window.requestAnimationFrame(function () {});
+    while (id--) {
       window.cancelAnimationFrame(id);
     }
- }
+  }
 
   useEffect(() => {
     cancelAllAnimationFrames();

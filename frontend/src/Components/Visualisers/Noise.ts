@@ -96,8 +96,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     x,
                     y,
                     frame,
-                    values[mapRowCol(row)] / 300000,
-                    values[mapRowCol(col)] / 10 //math.mapRange(0, -1, 1, valuesAverage / 5000, valuesAverage / 500)
+                    values[row] / 300000,
+                    values[col] / 10 //math.mapRange(0, -1, 1, valuesAverage / 5000, valuesAverage / 500)
                     //amp
                 );
 
@@ -106,8 +106,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     n,
                     -1,
                     1,
-                    params.scaleMin * values[mapRowCol(row)],
-                    params.scaleMax * values[mapRowCol(col)]
+                    params.scaleMin * values[row],
+                    params.scaleMax * values[col]
                 );
 
                 //   const scale = valuesAverage / 5;
