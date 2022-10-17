@@ -21,7 +21,7 @@ function App() {
       <TopNav />
       <div className="content">
         <Select
-          placeholder="select visualiser.."
+          placeholder="select visualiser preset.."
           options={options}
           onChange={(e) => {
             cancelAllAnimationFrames();

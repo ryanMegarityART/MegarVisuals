@@ -6,7 +6,7 @@ export class AudioVisualizer {
   processError: any;
   analyser: any;
   defaultFftSize: Number = 128;
-
+  defaultSmoothingTimeConstant: Number = 0.8;
 
   constructor(audioContext: any, processFrame: any, processError: any) {
     this.audioContext = audioContext;
@@ -49,19 +49,20 @@ export class AudioVisualizer {
     const frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
     const processFrame = this.processFrame || (() => { });
     // console.log("tempo: ", tempo);
-    // const renderFrame = () => {
-    //   this.analyser.getByteFrequencyData(frequencyData);
-    //   const [fftSize, smoothingConstant] = processFrame(frequencyData);
-    //   this.analyser.smoothingTimeConstant = smoothingConstant || this.defaultSmoothingTimeConstant;
-    //   this.analyser.fftSize = fftSize || this.defaultFftSize;
-    //   requestAnimationFrame(renderFrame);
-    // };
-    // requestAnimationFrame(renderFrame);
-
-    setInterval(() => {
+    const renderFrame = () => {
       this.analyser.getByteFrequencyData(frequencyData);
       processFrame(frequencyData);
-      // requestAnimationFrame(renderFrame);
-    }, 100);
+      // const [fftSize, smoothingConstant] = processFrame(frequencyData);
+      // this.analyser.smoothingTimeConstant = smoothingConstant || this.defaultSmoothingTimeConstant;
+      // this.analyser.fftSize = fftSize || this.defaultFftSize;
+      requestAnimationFrame(renderFrame);
+    };
+    requestAnimationFrame(renderFrame);
+
+    // setInterval(() => {
+    //   this.analyser.getByteFrequencyData(frequencyData);
+    //   processFrame(frequencyData);
+    //   // requestAnimationFrame(renderFrame);
+    // }, 100);
   }
 }

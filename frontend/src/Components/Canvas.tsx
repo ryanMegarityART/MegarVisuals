@@ -8,11 +8,6 @@ interface CanvasProps {
   setContext: any;
 }
 
-export const canvasDefaultSizeProps = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-};
-
 export const Canvas = ({
   width,
   height,
