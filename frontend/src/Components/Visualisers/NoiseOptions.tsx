@@ -10,7 +10,6 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <Select
         placeholder="select shape.."
         options={shapeOptions}
-        value={params.shape}
         onChange={(e) => {
           console.log(e);
           setParams({ ...params, shape: e.value });
