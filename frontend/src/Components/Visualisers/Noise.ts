@@ -106,8 +106,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     n,
                     -1,
                     1,
-                    params.scaleMin * values[row],
-                    params.scaleMax * values[col]
+                    (params.scaleMin / 1000) * values[row],
+                    (params.scaleMax / 1000) * values[col]
                 );
 
                 //   const scale = valuesAverage / 5;
@@ -137,8 +137,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                 }
 
                 if (params.shape === "hexagon") {
-                    drawHexagon(ctx, Number(params.scaleMin),
-                        Number(params.scaleMax))
+                    drawHexagon(ctx, Number(params.scaleMin / 1000),
+                        Number(params.scaleMax / 1000))
                 }
 
                 ctx.fill();

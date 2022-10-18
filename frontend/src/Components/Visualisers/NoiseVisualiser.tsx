@@ -28,8 +28,8 @@ export const NoiseVisualiser = () => {
   const [params, setParams] = useState<NoiseParams>({
     rows: 25,
     cols: 25,
-    scaleMin: 0.00001,
-    scaleMax: 0.1,
+    scaleMin: 5,
+    scaleMax: 25,
     speed: 2,
     frequency: 10,
     amplitude: 50,

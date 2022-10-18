@@ -40,7 +40,47 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         min={1}
         max={60}
       />
-      <label>speed</label>
+      <label>noise frequency</label>
+      <Slider
+        key={`frequency-slider-${params.frequency}`}
+        defaultValue={params.frequency}
+        onChangeCommitted={(e: any, value: any) =>
+          handleParamUpdate({ frequency: value })
+        }
+        aria-label="frequency"
+        valueLabelDisplay="auto"
+        step={1}
+        min={1}
+        max={100}
+      />
+      <label>noise amplitude</label>
+      <Slider
+        key={`amplitude-slider-${params.amplitude}`}
+        defaultValue={params.amplitude}
+        onChangeCommitted={(e: any, value: any) =>
+          handleParamUpdate({ amplitude: value })
+        }
+        aria-label="amplitude"
+        valueLabelDisplay="auto"
+        step={1}
+        min={1}
+        max={100}
+      />
+      <label>scale</label>
+      <Slider
+        key={`scale-slider-${params.scale}`}
+        defaultValue={[params.scaleMin, params.scaleMax]}
+        onChangeCommitted={(e: any, value: any) =>
+          handleParamUpdate({ scaleMin: value[0], scaleMax: value[1] })
+        }
+        aria-label="scale"
+        valueLabelDisplay="auto"
+        step={0.5}
+        min={1}
+        max={250}
+      />
+
+      {/* <label>speed</label>
       <Slider
         key={`speed-slider-${params.speed}`}
         defaultValue={params.speed}
@@ -52,7 +92,7 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         step={0.05}
         min={0}
         max={5}
-      />
+      /> */}
       <label>shape</label>
       <Select
         placeholder="select shape.."
