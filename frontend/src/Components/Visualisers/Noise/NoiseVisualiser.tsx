@@ -21,7 +21,7 @@ export interface NoiseParams {
   scaleMax: number;
   frequency: number;
   amplitude: number;
-  lineCap: string;
+  lineCap: CanvasLineCap;
   shape: string;
   toggleFlash: boolean;
   toggleImage: boolean;
@@ -63,7 +63,7 @@ export const NoiseVisualiser = () => {
 
   useEffect(() => {
     cancelAllAnimationFrames();
-    Noise(canvasRef, context, params);
+    Noise(canvasRef, params);
   }, [context, canvasRef, params]);
 
   return (

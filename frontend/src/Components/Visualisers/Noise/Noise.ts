@@ -31,7 +31,7 @@ let frame = 0;
 
 
 
-export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, params: NoiseParams) => {
+export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, params: NoiseParams) => {
     const audioContext = new AudioContext();
 
     const rect = canvasRef && canvasRef.current ? canvasRef.current.getBoundingClientRect() : null;
@@ -41,10 +41,17 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
 
     const processFrame = (data: any) => {
 
+
         const values: any = Object.values(data);
         const valuesAverage: any =
             values.reduce((prev: any, curr: any) => prev + curr) / (16 * 5);
 
+        const ctx = canvasRef.current ? canvasRef.current.getContext("2d") : null;
+
+        if (!ctx) {
+            console.log("no canvas context found");
+            return;
+        }
         try {
             frame += params.speed / 10;
             ctx.fillStyle = "black";

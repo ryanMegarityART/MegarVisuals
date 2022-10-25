@@ -20,7 +20,7 @@ export const Canvas = ({
       const canvas = canvasRef.current;
       setContext(canvas.getContext("2d"));
     }
-  }, canvasRef);
+  }, [canvasRef]);
 
   return <canvas ref={canvasRef} height={height} width={width} />;
 };
