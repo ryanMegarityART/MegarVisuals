@@ -16,6 +16,7 @@
   flex: 1 1 auto;
   height: 70vh;
   padding-right: 15px;
+  max-width: 20vw;
 }
 
 .p-img {

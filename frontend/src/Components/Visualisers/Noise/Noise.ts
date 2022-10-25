@@ -1,8 +1,9 @@
 import random from "canvas-sketch-util/random";
 import math from "canvas-sketch-util/math";
-import { AudioVisualizer } from "../../Audio/audioAPI";
+import { AudioVisualizer } from "../../../Audio/audioAPI";
 import rainbowImageImport from "./rainbow-sq.jpg";
-import { drawHexagon, drawRectangle, drawSmiley, drawTriangle } from "../../Utils/shapes";
+import { drawHexagon, drawRectangle, drawSmiley, drawTriangle } from "../../../Utils/shapes";
+import { NoiseParams } from "./NoiseVisualiser";
 
 const mapRowCol: any = (rowCol: number) => {
     const dataMap: any = {
@@ -30,7 +31,7 @@ let frame = 0;
 
 
 
-export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, params: any) => {
+export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, params: NoiseParams) => {
     const audioContext = new AudioContext();
 
     const rect = canvasRef && canvasRef.current ? canvasRef.current.getBoundingClientRect() : null;
@@ -96,8 +97,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     x,
                     y,
                     frame,
-                    values[row] / 300000,
-                    values[col] / 10 //math.mapRange(0, -1, 1, valuesAverage / 5000, valuesAverage / 500)
+                    params.amplitude / 10000,
+                    params.frequency / 10 //math.mapRange(0, -1, 1, valuesAverage / 5000, valuesAverage / 500)
                     //amp
                 );
 
@@ -106,8 +107,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     n,
                     -1,
                     1,
-                    (params.scaleMin / 1000) * values[row],
-                    (params.scaleMax / 1000) * values[col]
+                    (params.scaleMin / 200) * valuesAverage,
+                    (params.scaleMax / 200) * valuesAverage
                 );
 
                 //   const scale = valuesAverage / 5;
@@ -137,8 +138,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                 }
 
                 if (params.shape === "hexagon") {
-                    drawHexagon(ctx, Number(params.scaleMin / 1000),
-                        Number(params.scaleMax / 1000))
+                    drawHexagon(ctx, Number(params.scaleMin / 200),
+                        Number(params.scaleMax / 200))
                 }
 
                 ctx.fill();

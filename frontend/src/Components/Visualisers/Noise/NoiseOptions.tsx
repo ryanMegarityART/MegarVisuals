@@ -1,7 +1,7 @@
 import Slider from "@mui/material/Slider/Slider";
 import React, { useCallback } from "react";
 import Select from "react-select";
-import { shapeOptions } from "../../Utils/shapes";
+import { shapeOptions } from "../../../Utils/shapes";
 
 export const NoiseOptions = ({ params, setParams }: any) => {
   const handleParamUpdate = useCallback(
