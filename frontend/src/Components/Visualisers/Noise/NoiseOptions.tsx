@@ -86,6 +86,19 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         min={1}
         max={250}
       />
+            <label>speed</label>
+      <Slider
+        key={`speed-slider-${params.scale}`}
+        defaultValue={[params.speed]}
+        onChangeCommitted={(e: any, value: any) =>
+          handleParamUpdate({ speed: value })
+        }
+        aria-label="speed"
+        valueLabelDisplay="auto"
+        step={0.5}
+        min={0}
+        max={100}
+      />
       <label>color</label>
       <Slider
         key={`scale-slider-${params.color.r}`}

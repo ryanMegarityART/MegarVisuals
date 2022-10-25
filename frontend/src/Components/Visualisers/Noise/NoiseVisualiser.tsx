@@ -26,6 +26,7 @@ export interface NoiseParams {
   toggleFlash: boolean;
   toggleImage: boolean;
   color: Color;
+  speed: number;
 }
 
 export const NoiseVisualiser = () => {
@@ -41,6 +42,7 @@ export const NoiseVisualiser = () => {
     toggleFlash: false,
     toggleImage: false,
     color: { r: 100, g: 255, b: 50 },
+    speed: 10,
   });
 
   const canvasRef = useRef<HTMLCanvasElement>(null);

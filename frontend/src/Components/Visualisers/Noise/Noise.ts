@@ -46,7 +46,7 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
             values.reduce((prev: any, curr: any) => prev + curr) / (16 * 5);
 
         try {
-            // frame += 0.0001;
+            frame += params.speed/10;
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, width, height);
             const localParams = localStorage.getItem("params");
@@ -121,8 +121,6 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                 ctx.beginPath();
                 ctx.lineWidth = scale;
                 ctx.lineCap = params.lineCap; //"butt | round | square";
-
-                // ctx.strokeStyle = `rgb(${100},${255},${50})`;
 
                 ctx.strokeStyle = `rgb(${params.color.r},${params.color.g},${params.color.b})`
 
