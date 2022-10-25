@@ -1,5 +1,5 @@
 import React from "react";
-import { NoiseOptions } from "./Visualisers/NoiseOptions";
+import { NoiseOptions } from "./Visualisers/Noise/NoiseOptions";
 
 export const Options = ({ visualiserName }: any) => {
   return (
