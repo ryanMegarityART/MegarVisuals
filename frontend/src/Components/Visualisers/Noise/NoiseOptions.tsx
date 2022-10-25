@@ -1,5 +1,5 @@
 import Slider from "@mui/material/Slider/Slider";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Select from "react-select";
 import { shapeOptions } from "../../../Utils/shapes";
 
@@ -14,6 +14,13 @@ export const NoiseOptions = ({ params, setParams }: any) => {
   return (
     <div>
       <h5>Options</h5>
+      <label>shape</label>
+      <Select
+        placeholder="select shape.."
+        options={shapeOptions}
+        defaultValue={shapeOptions[0]}
+        onChange={(e: any) => handleParamUpdate({ shape: e.value })}
+      />
       <label>rows</label>
       <Slider
         key={`row-slider-${params.rows}`}
@@ -79,26 +86,21 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         min={1}
         max={250}
       />
-
-      {/* <label>speed</label>
+      <label>color</label>
       <Slider
-        key={`speed-slider-${params.speed}`}
-        defaultValue={params.speed}
+        key={`scale-slider-${params.color.r}`}
+        defaultValue={params.color.r}
         onChangeCommitted={(e: any, value: any) =>
-          handleParamUpdate({ speed: value })
+          handleParamUpdate({
+            color: { r: value, g: Math.random() * 255, b: Math.random() * 255 },
+          })
         }
-        aria-label="speed"
+        aria-label="color-r"
         valueLabelDisplay="auto"
-        step={0.05}
+        step={1}
         min={0}
-        max={5}
-      /> */}
-      <label>shape</label>
-      <Select
-        placeholder="select shape.."
-        options={shapeOptions}
-        defaultValue={shapeOptions[0]}
-        onChange={(e: any) => handleParamUpdate({ shape: e.value })}
+        max={255}
+        color="secondary"
       />
     </div>
   );

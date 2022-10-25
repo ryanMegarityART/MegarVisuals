@@ -8,20 +8,24 @@ export interface VisualiserProps {
   visualiserName: string;
 }
 
+export interface Color {
+  r: number;
+  g: number;
+  b: number;
+}
+
 export interface NoiseParams {
   rows: number;
   cols: number;
   scaleMin: number;
   scaleMax: number;
-  speed: number;
   frequency: number;
   amplitude: number;
-  // frame: 0,
-  // animate: true,
   lineCap: string;
   shape: string;
   toggleFlash: boolean;
   toggleImage: boolean;
+  color: Color;
 }
 
 export const NoiseVisualiser = () => {
@@ -30,15 +34,13 @@ export const NoiseVisualiser = () => {
     cols: 25,
     scaleMin: 5,
     scaleMax: 25,
-    speed: 2,
     frequency: 10,
     amplitude: 50,
-    // frame: 0,
-    // animate: true,
     lineCap: "round",
     shape: "rectangle",
     toggleFlash: false,
     toggleImage: false,
+    color: { r: 100, g: 255, b: 50 },
   });
 
   const canvasRef = useRef<HTMLCanvasElement>(null);

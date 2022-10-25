@@ -122,7 +122,9 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                 ctx.lineWidth = scale;
                 ctx.lineCap = params.lineCap; //"butt | round | square";
 
-                ctx.strokeStyle = `rgb(${100},${255},${50})`;
+                // ctx.strokeStyle = `rgb(${100},${255},${50})`;
+
+                ctx.strokeStyle = `rgb(${params.color.r},${params.color.g},${params.color.b})`
 
                 ctx.moveTo(w * -0.5, 0);
                 if (params.shape === "rectangle") {
