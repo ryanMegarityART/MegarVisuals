@@ -54,4 +54,6 @@ export const shapeOptions = [
     { value: "rectangle", label: "Rectangle" },
     { value: "triangle", label: "Triangle" },
     { value: "hexagon", label: "Hexagon" },
-    { value: "smiley-face", label: "Smiley Face" }];
+    { value: "smiley-face", label: "Smiley Face" },
+    { value: "all", label: "All of the above..." }
+];

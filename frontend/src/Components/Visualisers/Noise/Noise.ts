@@ -46,7 +46,7 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
             values.reduce((prev: any, curr: any) => prev + curr) / (16 * 5);
 
         try {
-            frame += params.speed/10;
+            frame += params.speed / 10;
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, width, height);
             const localParams = localStorage.getItem("params");
@@ -129,17 +129,34 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, ctx: any, p
                     drawRectangle(ctx, w);
                 }
 
-                if (params.shape === "triangle") {
+                else if (params.shape === "triangle") {
                     drawTriangle(ctx, w)
                 }
 
-                if (params.shape === "smiley-face") {
+                else if (params.shape === "smiley-face") {
                     drawSmiley(ctx, w);
                 }
 
-                if (params.shape === "hexagon") {
+                else if (params.shape === "hexagon") {
                     drawHexagon(ctx, Number(params.scaleMin / 200),
                         Number(params.scaleMax / 200))
+                }
+
+                else if (params.shape = "all") {
+                    const randy = Math.random();
+                    if (randy < 0.3) {
+                        drawRectangle(ctx, w);
+                    }
+                    else if (randy < 0.6) {
+                        drawTriangle(ctx, w)
+                    }
+                    else if (randy < 0.9999) {
+                        drawHexagon(ctx, Number(params.scaleMin / 200),
+                            Number(params.scaleMax / 200))
+                    } else {
+                        drawSmiley(ctx, w);
+
+                    }
                 }
 
                 ctx.fill();
