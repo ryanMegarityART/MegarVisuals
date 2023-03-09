@@ -39,21 +39,20 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, params: Noi
     const height = rect && rect.height ? rect.height : 0;
 
 
-    const processFrame = (data: any) => {
+    const processFrame = (data: Uint8Array) => {
 
-
-        const values: any = Object.values(data);
-        const valuesAverage: any =
+        const values = Object.values(data);
+        const valuesAverage =
             values.reduce((prev: any, curr: any) => prev + curr) / (16 * 5);
 
         const ctx = canvasRef.current ? canvasRef.current.getContext("2d") : null;
 
         if (!ctx) {
             console.log("no canvas context found");
-            return;
+            return [params.fftSize, params.smoothingConstant];
         }
         try {
-            frame += params.speed / 10;
+            frame += params.speed / 20;
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, width, height);
             const localParams = localStorage.getItem("params");
@@ -114,8 +113,8 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, params: Noi
                     n,
                     -1,
                     1,
-                    (params.scaleMin / 200) * valuesAverage,
-                    (params.scaleMax / 200) * valuesAverage
+                    (params.scaleMin / 250) * valuesAverage,
+                    (params.scaleMax / 250) * valuesAverage
                 );
 
                 //   const scale = valuesAverage / 5;
@@ -129,7 +128,7 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, params: Noi
                 ctx.lineWidth = scale;
                 ctx.lineCap = params.lineCap; //"butt | round | square";
 
-                ctx.strokeStyle = `rgb(${params.color.r},${params.color.g},${params.color.b})`
+                ctx.strokeStyle = `rgb(${(params.color.r * (scale / 10))},${params.color.g * (scale / 10)},${params.color.b * (scale / 10)})`
 
                 ctx.moveTo(w * -0.5, 0);
                 if (params.shape === "rectangle") {
@@ -176,6 +175,7 @@ export const Noise = (canvasRef: React.RefObject<HTMLCanvasElement>, params: Noi
         } catch (e) {
             console.log(e);
         }
+        return [params.fftSize, params.smoothingConstant]
     };
 
     const processError = () => {
