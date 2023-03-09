@@ -35,8 +35,8 @@ export const NoiseVisualiser = () => {
   const [params, setParams] = useState<NoiseParams>({
     rows: 25,
     cols: 25,
-    scaleMin: 5,
-    scaleMax: 25,
+    scaleMin: 10,
+    scaleMax: 100,
     frequency: 10,
     amplitude: 50,
     lineCap: "round",
@@ -44,9 +44,9 @@ export const NoiseVisualiser = () => {
     toggleFlash: false,
     toggleImage: false,
     color: { r: 100, g: 255, b: 50 },
-    speed: 10,
+    speed: 50,
     fftSize: 32,
-    smoothingConstant: 0.9,
+    smoothingConstant: 0.95,
   });
 
   const canvasRef = useRef<HTMLCanvasElement>(null);

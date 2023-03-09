@@ -2,10 +2,24 @@ import Slider from "@mui/material/Slider/Slider";
 import React, { useCallback, useState } from "react";
 import Select from "react-select";
 import { shapeOptions } from "../../../Utils/shapes";
+import { NoiseParams } from "./NoiseVisualiser";
 
-export const NoiseOptions = ({ params, setParams }: any) => {
+interface NoiseOptionsProps {
+  params: NoiseParams;
+  setParams: React.Dispatch<React.SetStateAction<NoiseParams>>;
+}
+
+const FFT_OPTIONS = [
+  { value: "32", label: "32" },
+  { value: "64", label: "64" },
+  { value: "128", label: "128" },
+  { value: "256", label: "256" },
+  { value: "512", label: "512" },
+];
+
+export const NoiseOptions = ({ params, setParams }: NoiseOptionsProps) => {
   const handleParamUpdate = useCallback(
-    (updateParamObj: any) => {
+    (updateParamObj: Partial<NoiseParams>) => {
       setParams({ ...params, ...updateParamObj });
     },
     [params]
@@ -18,13 +32,13 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <Select
         placeholder="select shape.."
         options={shapeOptions}
-        defaultValue={shapeOptions[0]}
+        value={shapeOptions[0]}
         onChange={(e: any) => handleParamUpdate({ shape: e.value })}
       />
       <label>rows</label>
       <Slider
         key={`row-slider-${params.rows}`}
-        defaultValue={params.rows}
+        value={params.rows}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ rows: value })
         }
@@ -37,7 +51,7 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <label>columns</label>
       <Slider
         key={`col-slider-${params.cols}`}
-        defaultValue={params.cols}
+        value={params.cols}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ cols: value })
         }
@@ -50,7 +64,7 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <label>noise frequency</label>
       <Slider
         key={`frequency-slider-${params.frequency}`}
-        defaultValue={params.frequency}
+        value={params.frequency}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ frequency: value })
         }
@@ -63,7 +77,7 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <label>noise amplitude</label>
       <Slider
         key={`amplitude-slider-${params.amplitude}`}
-        defaultValue={params.amplitude}
+        value={params.amplitude}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ amplitude: value })
         }
@@ -75,8 +89,8 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       />
       <label>scale</label>
       <Slider
-        key={`scale-slider-${params.scale}`}
-        defaultValue={[params.scaleMin, params.scaleMax]}
+        key={`scale-slider-${params.scaleMin}`}
+        value={[params.scaleMin, params.scaleMax]}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ scaleMin: value[0], scaleMax: value[1] })
         }
@@ -86,10 +100,10 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         min={1}
         max={250}
       />
-            <label>speed</label>
+      <label>speed</label>
       <Slider
-        key={`speed-slider-${params.scale}`}
-        defaultValue={[params.speed]}
+        key={`speed-slider-${params.speed}`}
+        value={[params.speed]}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({ speed: value })
         }
@@ -102,7 +116,7 @@ export const NoiseOptions = ({ params, setParams }: any) => {
       <label>color</label>
       <Slider
         key={`scale-slider-${params.color.r}`}
-        defaultValue={params.color.r}
+        value={params.color.r}
         onChangeCommitted={(e: any, value: any) =>
           handleParamUpdate({
             color: { r: value, g: Math.random() * 255, b: Math.random() * 255 },
@@ -113,6 +127,29 @@ export const NoiseOptions = ({ params, setParams }: any) => {
         step={1}
         min={0}
         max={255}
+        color="secondary"
+      />
+      <label>FFT Size</label>
+      <Select
+        placeholder="select shape.."
+        options={FFT_OPTIONS}
+        value={FFT_OPTIONS.filter((o) => parseInt(o.value) === params.fftSize)}
+        onChange={(e: any) => handleParamUpdate({ fftSize: parseInt(e.value) })}
+      />
+      <label>FFT Smoothing</label>
+      <Slider
+        key={`scale-slider-fftSmoothing`}
+        value={params.smoothingConstant}
+        onChangeCommitted={(e: any, value: any) =>
+          handleParamUpdate({
+            smoothingConstant: value,
+          })
+        }
+        aria-label="fft-smoothing"
+        valueLabelDisplay="auto"
+        step={0.01}
+        min={0}
+        max={0.99}
         color="secondary"
       />
     </div>
