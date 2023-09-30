@@ -1,7 +1,6 @@
 .visualiser-container {
   display: flex;
   justify-content: space-evenly;
-  height: 100%;
 }
 .visualiser-canvas {
   flex: 2 1 0;

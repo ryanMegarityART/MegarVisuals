@@ -70,14 +70,14 @@ export const NoiseVisualiser = () => {
   }, [context, canvasRef, params]);
 
   return (
-    <div className="visualiser-container h-100 w-100">
-      <div className="options-section w-100 h-75">
+    <div className="d-flex flex-row">
+      <div className="options-section">
         <NoiseOptions params={params} setParams={setParams} />
       </div>
-      <div className="visualiser-canvas w-100 h-75">
+      <div className="visualiser-canvas">
         <Canvas
-          height={height}
           width={width}
+          height={height}
           canvasRef={canvasRef}
           context={context}
           setContext={setContext}

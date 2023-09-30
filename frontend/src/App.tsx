@@ -25,10 +25,10 @@ function App() {
   );
 
   return (
-    <div className="h-100">
+    <div>
       <TopNav />
-      <Container className="h-100">
-        <div className="py-3 h-100 w-100">
+      <Container>
+        <div className="py-3">
           <Select
             placeholder="Select visualiser preset.."
             options={options}
@@ -36,7 +36,7 @@ function App() {
             styles={reactSelectStyles}
             theme={reactSelectTheme}
           />
-          <div className="py-3 h-100 w-100">
+          <div className="py-3">
             {selectedVisualiser && (
               <Visualiser visualiserName={selectedVisualiser} />
             )}

@@ -5,9 +5,5 @@ export interface VisualiserProps {
 }
 
 export const Visualiser = ({ visualiserName }: VisualiserProps) => {
-  return (
-    <div className="visualiser-container">
-      {visualiserName == "noise" && <NoiseVisualiser />}
-    </div>
-  );
+  return <>{visualiserName == "noise" && <NoiseVisualiser />}</>;
 };
