@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "../../Canvas";
-import { Options } from "../../Options";
 import { Noise } from "./Noise";
 import { NoiseOptions } from "./NoiseOptions";
 
