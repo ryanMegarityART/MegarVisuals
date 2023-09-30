@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+.nav-item .dropdown-menu {
+  background: #000000;
+}
+
+.nav-item .dropdown-item {
+  color: #ffffff;
+}
+
+.nav-item .dropdown-item:hover {
+  background: #f0ad4e;
+}

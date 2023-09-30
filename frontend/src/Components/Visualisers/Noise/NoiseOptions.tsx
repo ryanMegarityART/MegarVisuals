@@ -1,6 +1,10 @@
 import Slider from "@mui/material/Slider/Slider";
 import React, { useCallback, useState } from "react";
 import Select from "react-select";
+import {
+  reactSelectStyles,
+  reactSelectTheme,
+} from "../../../Utils/react-select-styles";
 import { shapeOptions } from "../../../Utils/shapes";
 import { NoiseParams } from "./NoiseVisualiser";
 
@@ -34,6 +38,8 @@ export const NoiseOptions = ({ params, setParams }: NoiseOptionsProps) => {
         options={shapeOptions}
         value={shapeOptions[0]}
         onChange={(e: any) => handleParamUpdate({ shape: e.value })}
+        styles={reactSelectStyles}
+        theme={reactSelectTheme}
       />
       <label>rows</label>
       <Slider
@@ -135,6 +141,8 @@ export const NoiseOptions = ({ params, setParams }: NoiseOptionsProps) => {
         options={FFT_OPTIONS}
         value={FFT_OPTIONS.filter((o) => parseInt(o.value) === params.fftSize)}
         onChange={(e: any) => handleParamUpdate({ fftSize: parseInt(e.value) })}
+        styles={reactSelectStyles}
+        theme={reactSelectTheme}
       />
       <label>FFT Smoothing</label>
       <Slider

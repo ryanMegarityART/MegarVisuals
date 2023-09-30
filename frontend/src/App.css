@@ -1,24 +1,22 @@
-.content {
-  padding: 30px;
-  height: 70vh;
-}
 .visualiser-container {
   display: flex;
   justify-content: space-evenly;
-  height: 70vh;
+  height: 100%;
 }
 .visualiser-canvas {
   flex: 2 1 0;
-  height: 70vh;
-  width: 60vw;
 }
 .options-section {
   flex: 1 1 auto;
-  height: 70vh;
+  height: 100%;
   padding-right: 15px;
   max-width: 20vw;
 }
 
 .p-img {
   height: 4vh;
+}
+
+.nav-image {
+  width: 15%;
 }

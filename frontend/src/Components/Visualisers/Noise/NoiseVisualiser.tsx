@@ -70,11 +70,11 @@ export const NoiseVisualiser = () => {
   }, [context, canvasRef, params]);
 
   return (
-    <div className="visualiser-container">
-      <div className="options-section">
+    <div className="visualiser-container h-100 w-100">
+      <div className="options-section w-100 h-75">
         <NoiseOptions params={params} setParams={setParams} />
       </div>
-      <div className="visualiser-canvas">
+      <div className="visualiser-canvas w-100 h-75">
         <Canvas
           height={height}
           width={width}
