@@ -9,7 +9,12 @@ import {
   reactSelectStyles,
   reactSelectTheme,
 } from "./Utils/react-select-styles";
-const options = [{ value: "noise", label: "Noise" }];
+
+const options = [
+  { value: "noise", label: "Noise" },
+  // { value: "lines", label: "Lines" },
+  { value: "avril", label: "Avril" },
+];
 
 function App() {
   const [selectedVisualiser, setSelectedVisualiser] = useState<any>(null);
@@ -25,24 +30,22 @@ function App() {
   );
 
   return (
-    <div>
+    <div className="d-flex flex-column">
       <TopNav />
-      <Container>
-        <div className="py-3">
-          <Select
-            placeholder="Select visualiser preset.."
-            options={options}
-            onChange={updateSelectedVisualiser}
-            styles={reactSelectStyles}
-            theme={reactSelectTheme}
-          />
-          <div className="py-3">
-            {selectedVisualiser && (
-              <Visualiser visualiserName={selectedVisualiser} />
-            )}
-          </div>
+      <div className="px-5 py-3 flex-fill">
+        <Select
+          placeholder="Select visualiser preset.."
+          options={options}
+          onChange={updateSelectedVisualiser}
+          styles={reactSelectStyles}
+          theme={reactSelectTheme}
+        />
+        <div className="p-4">
+          {selectedVisualiser && (
+            <Visualiser visualiserName={selectedVisualiser} />
+          )}
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

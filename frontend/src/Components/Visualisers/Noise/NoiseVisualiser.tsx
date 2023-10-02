@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { getBoundingRect } from "../../../Utils/canvas";
 import { Canvas } from "../../Canvas";
 import { Noise } from "./Noise";
 import { NoiseOptions } from "./NoiseOptions";
@@ -50,10 +51,7 @@ export const NoiseVisualiser = () => {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<any>(null);
-  const rect =
-    canvasRef && canvasRef.current && canvasRef.current.parentElement
-      ? canvasRef.current.parentElement.getBoundingClientRect()
-      : null;
+  const rect = getBoundingRect(canvasRef);
   const width = rect && rect.width ? rect.width : 300;
   const height = rect && rect.height ? rect.height : 300;
 
